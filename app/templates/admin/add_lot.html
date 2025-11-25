@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Parking Lot</h2>
+<form method="POST">
+    <div class="form-group">
+        <label>Lot Name</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Total Spots</label>
+        <input type="number" name="total_spots" class="form-control" min="1" required>
+    </div>
+    <button type="submit" class="btn btn-success">Add Lot</button>
+</form>
+{% endblock %}

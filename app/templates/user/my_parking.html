@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+<h2>My Bookings</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Parking Lot</th>
+            <th>Spot ID</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Cost</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.spot.lot.name }}</td>
+            <td>{{ booking.spot.spot_number }}</td>
+            <td>{{ booking.start_time.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+                {% if booking.end_time %}
+                    {{ booking.end_time.strftime('%Y-%m-%d %H:%M') }}
+                {% else %}
+                    <span class="text-danger">Ongoing</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if booking.total_cost %}
+                    ₹{{ booking.total_cost }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if booking.end_time %}
+                    <span class="badge bg-success">Completed</span>
+                {% else %}
+                    <span class="badge bg-warning">Active</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if not booking.end_time %}
+                    <a href="{{ url_for('user.confirm_release', booking_id=booking.id) }}" class="btn btn-danger btn-sm">
+                        Release
+                    </a>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

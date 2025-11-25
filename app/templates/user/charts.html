@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+<div class="container mt-4">
+    <h2 class="mb-4">Your Parking Summary</h2>
+    <canvas id="historyChart" width="600" height="300"></canvas>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- External JS -->
+<script src="{{ url_for('static', filename='user-script.js') }}"></script>
+
+{% endblock %}

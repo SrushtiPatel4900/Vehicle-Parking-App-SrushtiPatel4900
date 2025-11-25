@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Spots in {{ lot.name }}</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Spot Number</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for spot in spots %}
+        <tr>
+            <td>{{ spot.spot_number }}</td>
+            <td>
+                {% if spot.is_available %}
+                    <span class="text-success">Available</span>
+                {% else %}
+                    <span class="text-danger">Booked</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

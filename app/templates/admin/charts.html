@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Parking Lot Booking Chart</h2>
+    <canvas id="bookingChart" width="600" height="300"></canvas>
+</div>
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Custom Chart Script -->
+<script src="{{ url_for('static', filename='chart-script.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Confirm Release</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Booking Details</h5>
+        <p><strong>Parking Lot:</strong> {{ booking.spot.lot.name }}</p>
+        <p><strong>Spot Number:</strong> {{ booking.spot.spot_number }}</p>
+        <p><strong>Start Time:</strong> {{ booking.start_time.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p><strong>Estimated Cost (so far):</strong> ₹{{ estimated_cost }}</p>
+
+        <div class="mt-3">
+            <form method="POST" action="{{ url_for('user.release_booking', booking_id=booking.id) }}">
+                <button type="submit" class="btn btn-danger">Confirm Release</button>
+                <a href="{{ url_for('user.my_parking') }}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
